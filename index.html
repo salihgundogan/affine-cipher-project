@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Uygulama Ödevi 2: Doğrusal Şifreleme</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Doğrusal Şifreleme Uygulaması</h1>
+      <nav>
+        <button onclick="showSection('encrypt')">Şifreleme</button>
+        <button onclick="showSection('decrypt')">De-Şifreleme</button>
+        <button onclick="showSection('crack')">Şifre Kırma</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="encrypt" class="app-section active">
+        <h2>Şifreleme</h2>
+        <input
+          type="text"
+          id="encrypt-text"
+          placeholder="Düz metin girin (İngilizce Alfabe)..."
+          required
+        />
+        <input
+          type="number"
+          id="encrypt-a"
+          placeholder="Anahtar A (EBOB(A, 26)=1 olmalı)"
+          min="1"
+          required
+        />
+        <input
+          type="number"
+          id="encrypt-b"
+          placeholder="Anahtar B (0-25)"
+          min="0"
+          max="25"
+          required
+        />
+        <button onclick="handleEncrypt()">Şifrele</button>
+        <h3>Şifreli Metin:</h3>
+        <p id="encrypted-output"></p>
+      </section>
+
+      <section id="decrypt" class="app-section hidden">
+        <h2>De-Şifreleme</h2>
+        <input
+          type="text"
+          id="decrypt-text"
+          placeholder="Şifreli metin girin (İngilizce Alfabe)..."
+          required
+        />
+        <input
+          type="number"
+          id="decrypt-a"
+          placeholder="Anahtar A"
+          min="1"
+          required
+        />
+        <input
+          type="number"
+          id="decrypt-b"
+          placeholder="Anahtar B"
+          min="0"
+          max="25"
+          required
+        />
+        <button onclick="handleDecrypt()">De-Şifrele</button>
+        <h3>Düz Metin:</h3>
+        <p id="decrypted-output"></p>
+      </section>
+
+      <section id="crack" class="app-section hidden">
+        <h2>Şifre Kırma (Frekans Analizi)</h2>
+        <input
+          type="text"
+          id="crack-text"
+          placeholder="Şifreli metin girin..."
+          required
+        />
+        <button onclick="handleCrack()">Şifreyi Kır</button>
+        <h3>Olası Düz Metinler:</h3>
+        <div id="cracked-output"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
