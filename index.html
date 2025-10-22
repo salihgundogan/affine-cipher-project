@@ -12,7 +12,7 @@
       <nav>
         <button onclick="showSection('encrypt')">Şifreleme</button>
         <button onclick="showSection('decrypt')">De-Şifreleme</button>
-        <button onclick="showSection('crack')">Şifre Kırma</button>
+        <button onclick="showSection('key-length')">Anahtar Uzunluğu</button>
       </nav>
     </header>
 
@@ -22,22 +22,13 @@
         <input
           type="text"
           id="encrypt-text"
-          placeholder="Düz metin girin (İngilizce Alfabe)..."
+          placeholder="Düz metin girin (Türkçe Alfabe)..."
           required
         />
         <input
-          type="number"
-          id="encrypt-a"
-          placeholder="Anahtar A (EBOB(A, 26)=1 olmalı)"
-          min="1"
-          required
-        />
-        <input
-          type="number"
-          id="encrypt-b"
-          placeholder="Anahtar B (0-25)"
-          min="0"
-          max="25"
+          type="text"
+          id="encrypt-key"
+          placeholder="Şifreleme Anahtarı (Metin)"
           required
         />
         <button onclick="handleEncrypt()">Şifrele</button>
@@ -50,22 +41,13 @@
         <input
           type="text"
           id="decrypt-text"
-          placeholder="Şifreli metin girin (İngilizce Alfabe)..."
+          placeholder="Şifreli metin girin (Türkçe Alfabe)..."
           required
         />
         <input
-          type="number"
-          id="decrypt-a"
-          placeholder="Anahtar A"
-          min="1"
-          required
-        />
-        <input
-          type="number"
-          id="decrypt-b"
-          placeholder="Anahtar B"
-          min="0"
-          max="25"
+          type="text"
+          id="decrypt-key"
+          placeholder="Şifreleme Anahtarı (Metin)"
           required
         />
         <button onclick="handleDecrypt()">De-Şifrele</button>
@@ -73,17 +55,25 @@
         <p id="decrypted-output"></p>
       </section>
 
-      <section id="crack" class="app-section hidden">
-        <h2>Şifre Kırma (Frekans Analizi)</h2>
+      <section id="key-length" class="app-section hidden">
+        <h2>Anahtar Uzunluğu Tespiti (Kaydırma Analizi)</h2>
         <input
           type="text"
-          id="crack-text"
+          id="length-text"
           placeholder="Şifreli metin girin..."
           required
         />
-        <button onclick="handleCrack()">Şifreyi Kır</button>
-        <h3>Olası Düz Metinler:</h3>
-        <div id="cracked-output"></div>
+        <input
+          type="number"
+          id="max-length"
+          placeholder="Test edilecek MAX Anahtar Uzunluğu (Örn: 10)"
+          min="2"
+          max="25"
+          required
+        />
+        <button onclick="handleKeyLength()">Analiz Et</button>
+        <h3>Analiz Sonuçları:</h3>
+        <div id="length-output"></div>
       </section>
     </main>
 
